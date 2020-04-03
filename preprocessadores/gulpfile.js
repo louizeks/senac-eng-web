@@ -21,9 +21,9 @@ gulp.task('sass', function () {
     .pipe(connect.reload())
     .pipe(sass().on('error', sass.logError))
     .pipe(minifyCSS())
-    .pipe(plumber())    
-    .pipe(livereload()
-    .pipe(gulp.dest('./css')));    
+    .pipe(plumber())        
+    .pipe(gulp.dest('./css'))
+    .pipe(livereload());    
 });
  
 gulp.task('watch', function () {
@@ -31,4 +31,4 @@ gulp.task('watch', function () {
   gulp.watch('./sass/**/*.scss', gulp.series('sass'));  
 });
 
-gulp.task('default', gulp.series('connect','sass','watch'));
+gulp.task('default', gulp.series('connect','watch','sass'));
